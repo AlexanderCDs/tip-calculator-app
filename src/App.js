@@ -17,11 +17,11 @@ import { ReactComponent as  IconPerson} from './assets/svgs/icon-person.svg';
 const App = (props) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [amount, setAmount] = useState(0.0000);
-    const [total, setTotal] = useState(0.0000);
-    const [tip, setTip] = useState(0.0000); 
+    const [total, setTotal] = useState(0.0000); 
     const onSubmit = (data, event) => { 
-        const { bill, numberPeople, custom } = data;
-        const value = (bill * (custom > 0 ? (custom/100) : tip));  
+        console.info(data)
+        const { bill, numberPeople, custom, porcentage } = data;
+        const value = (bill * (custom > 0 ? (custom/100) : porcentage));  
         const amnt = value / numberPeople;
         setAmount( amnt );
         setTotal( (bill / numberPeople) + amnt );
@@ -71,26 +71,41 @@ const App = (props) => {
                         <div className="input-group"> 
                             <label> Select Tip % </label>
                             <div className="button-group"> 
-                                <InputButton 
-                                    handleClick={() => {setTip(0.05)}}
-                                    value="5%" 
-                                />
-                                <InputButton 
-                                    handleClick={() => {setTip(0.10)}}
-                                    value="10%" 
-                                />
-                                <InputButton 
-                                    handleClick={() => {setTip(0.15)}} 
-                                    value="15%" 
-                                />
-                                <InputButton 
-                                    handleClick={() => {setTip(0.25)}} 
-                                    value="25%" 
-                                />
-                                <InputButton 
-                                    handleClick={() => {setTip(0.50)}}
-                                    value="50%" 
-                                />
+                                <InputRadio 
+                                    text="5%"
+                                    name="porcentage"
+                                    errors={errors} 
+                                    required={true}
+                                    value={0.05}
+                                    register={register} />
+                                <InputRadio 
+                                    text="10%"
+                                    name="porcentage"
+                                    errors={errors} 
+                                    required={true}
+                                    value={0.10}
+                                    register={register} />
+                                <InputRadio 
+                                    text="15%"
+                                    name="porcentage"
+                                    errors={errors} 
+                                    required={true}
+                                    value={0.15}
+                                    register={register} />
+                                <InputRadio 
+                                    text="25%"
+                                    name="porcentage"
+                                    errors={errors} 
+                                    required={true}
+                                    value={0.25}
+                                    register={register} />   
+                                <InputRadio 
+                                    text="50%"
+                                    name="porcentage"
+                                    errors={errors} 
+                                    required={true}
+                                    value={0.50}
+                                    register={register} />  
                                 <InputNumber 
                                     handleChange={onSubmit}
                                     placeholder="Custom"
@@ -100,7 +115,7 @@ const App = (props) => {
                                 />
                             </div>
                         </div>
-                        <div className="input-group"> 
+                        <div className="input-group" style={{marginBottom: '10px'}}> 
                             <label> Number of People </label>
                             <InputNumber 
                                 placeholder="0"
@@ -111,6 +126,10 @@ const App = (props) => {
                                 icon={<IconPerson className="icon" />}
                             />
                         </div> 
+                        <InputButton 
+                            className="reset"  
+                            value="Enter" 
+                        />
                     </Form>
                 </div>
                 <div className="col result">

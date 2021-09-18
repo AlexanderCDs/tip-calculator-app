@@ -7,11 +7,12 @@ import Error from './Error';
 import {setErrorClass} from '../containers/ErrorClass';
 
 const InputRadio = (props) => {
-    const { register, name, className, value } = props;
+    const { register, name, className, value, text } = props;
     return (
-        <div className="button">  
+        <div className="button"> 
+            {text}  
             <input  
-                className={`btn ${className}`} 
+                className={`radio ${className}`} 
                 type="radio" 
                 value={value}
                 {...register(name)}
