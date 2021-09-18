@@ -18,8 +18,7 @@ const App = (props) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [amount, setAmount] = useState(0.0000);
     const [total, setTotal] = useState(0.0000); 
-    const onSubmit = (data, event) => { 
-        console.info(data)
+    const onSubmit = (data, event) => {  
         const { bill, numberPeople, custom, porcentage } = data;
         const value = (bill * (custom > 0 ? (custom/100) : porcentage));  
         const amnt = value / numberPeople;
@@ -72,6 +71,7 @@ const App = (props) => {
                             <label> Select Tip % </label>
                             <div className="button-group"> 
                                 <InputRadio 
+                                    id="five"
                                     text="5%"
                                     name="porcentage"
                                     errors={errors} 
@@ -79,6 +79,7 @@ const App = (props) => {
                                     value={0.05}
                                     register={register} />
                                 <InputRadio 
+                                    id="ten"
                                     text="10%"
                                     name="porcentage"
                                     errors={errors} 
@@ -86,6 +87,7 @@ const App = (props) => {
                                     value={0.10}
                                     register={register} />
                                 <InputRadio 
+                                    id="fifteen"
                                     text="15%"
                                     name="porcentage"
                                     errors={errors} 
@@ -93,6 +95,7 @@ const App = (props) => {
                                     value={0.15}
                                     register={register} />
                                 <InputRadio 
+                                    id="twenty-five"
                                     text="25%"
                                     name="porcentage"
                                     errors={errors} 
@@ -100,6 +103,7 @@ const App = (props) => {
                                     value={0.25}
                                     register={register} />   
                                 <InputRadio 
+                                    id="fiftyn"
                                     text="50%"
                                     name="porcentage"
                                     errors={errors} 
