@@ -7,7 +7,7 @@ import Error from './Error';
 import {setErrorClass} from '../containers/ErrorClass';
 
 const InputNumber = (props) => {
-    const { placeholder, register, name, required, errors, icon, handleChange = null} = props;
+    const { className, placeholder, register, name, required, errors, icon, handleChange = null} = props;
     return (
         <div className="input-text">  
             <div className="error-content">
@@ -25,14 +25,12 @@ const InputNumber = (props) => {
             {icon !== null && (
                  icon
             )}
-            <input 
+            <input  
             step="any"
             onChange={handleChange}
             placeholder={placeholder} 
             className={
-                `input 
-                ${setErrorClass({name, errors, validated: 'required'})} 
-                ${setErrorClass({name, errors, validated: 'pattern'})}`
+                `input ${className} ${setErrorClass({name, errors, validated: 'required'})} ${setErrorClass({name, errors, validated: 'pattern'})}`
             } 
             type="number" 
             {...register(name, { 

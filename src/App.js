@@ -111,6 +111,7 @@ const App = (props) => {
                                     value={0.50}
                                     register={register} />  
                                 <InputNumber 
+                                    className='custom'
                                     handleChange={onSubmit}
                                     placeholder="Custom"
                                     name="custom"
